@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student data</title>
+
+    <style>
+        body { 
+            font-family: Arial, Helvetica, sans-serif; padding: 30px; background: white;
+        }
+
+        .student-card { 
+            background: white; 
+            padding: 15px; 
+            margin: 10px; 
+            border-radius: 10px; 
+            width: 200px; 
+            display :inline-block; 
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1> Student's Data</h1>
+
+    <div id="studentContainer"> 
+        <p>student's data loading... </p>
+    </div>
+    
+
+    <script>
+        const container = document.getElementById('studentContainer'); 
+    
+        // function to fetch and display students data 
+        async function loadStudents() { 
+            try {
+                const response = await fetch('http://localhost:3000/api/students'); 
+                const data = await response.json(); 
+                container.innerHTML = ''; // clear the loading text 
+
+                for (let i = 0; i<data.length; i++){ 
+                    const students = data[i];
+
+
+                    // append HTML directly 
+                    container.innerHTML += '<div class="student-card">' + '<h3>' + students.firstname + ' ' + students.lastname + '</h3>' + 
+                    '<p>Email : ' + students.email + '</p' + 
+                        '<p>city :' + students.city + '</p' + 
+                        '</div>' 
+                }
+
+            } catch (error) {
+                container.innerHTML = 'error loading students'
+                console.log(error)
+            }
+        }
+        
+
+        // call the function 
+        loadStudents(); 
+    </script>
+</body>
+</html>
