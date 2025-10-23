@@ -10,7 +10,8 @@ app.use(bodyParser.json());
 app.use(express.static('public'))
 
 
-// data 
+// data students 
+ 
 let students = [{ 
     id: 1, firstname : "Abhishek", lastname:  "yadav", email : "abhishek@gmail.com", city: 'Delhi'
 }, 
