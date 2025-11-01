@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
+
 const app = express(); 
 app.use(cors()); 
 app.use(bodyParser.json()); 
@@ -9,16 +10,14 @@ app.use(bodyParser.json());
 // frontend 
 app.use(express.static('public'))
 
-
 // data students 
- 
 let students = [{ 
     id: 1, firstname : "Abhishek", lastname:  "yadav", email : "abhishek@gmail.com", city: 'Delhi'
 }, 
 { 
     id: 2, firstname : "ram", lastname: "sharma", email : "ram@gmail.com", city: 'chennai'
 }]
-
+ 
 // routes 
 app.get('/api/students', (req,res) => res.json(students));
 
